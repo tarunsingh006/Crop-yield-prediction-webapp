@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .result-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .result-card {
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+        .success-card {
+            border-left: 5px solid #38a169;
+            background-color: #f0fff4;
+        }
+        .error-card {
+            border-left: 5px solid #e53e3e;
+            background-color: #fff5f5;
+        }
+        .prediction-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin: 1rem 0;
+        }
+        .error-list {
+            color: #e53e3e;
+            padding-left: 1.5rem;
+        }
+        .error-list li {
+            margin-bottom: 0.5rem;
+        }
+        .supported-container {
+            margin-top: 1.5rem;
+        }
+        .supported-columns {
+            column-count: 3;
+            column-gap: 2rem;
+        }
+        .supported-item {
+            display: block;
+            padding: 0.2rem 0;
+            break-inside: avoid;
+        }
+        .current-selection {
+            font-weight: bold;
+            color: #e53e3e;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: #4299e1;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .supported-columns {
+                column-count: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        {% if success %}
+            <div class="result-card success-card">
+                <h2>✅ Prediction Successful</h2>
+                <p><strong>Crop:</strong> {{ input_data.Crop }}</p>
+                <p><strong>State:</strong> {{ input_data.State }}</p>
+                <p><strong>Season:</strong> {{ input_data.Season }}</p>
+                <div class="prediction-value">
+                    Predicted Yield: {{ prediction }} tons/ha
+                </div>
+            </div>
+        {% else %}
+            <div class="result-card error-card">
+                <h2>❌ Prediction Failed</h2>
+                <ul class="error-list">
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <div class="supported-container">
+                    {% if "Unsupported crop" in errors|join(', ') %}
+                        <h4>Supported Crops ({{ supported_crops|length }} total):</h4>
+                        <div class="supported-columns">
+                            {% for crop in supported_crops %}
+                                <span class="supported-item {% if crop == input_data.Crop %}current-selection{% endif %}">
+                                    {{ crop }}{% if crop == input_data.Crop %} (your selection){% endif %}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    {% if "Unsupported season" in errors|join(', ') %}
+                        <h4>Supported Seasons:</h4>
+                        <div class="supported-columns">
+                            {% for season in supported_seasons %}
+                                <span class="supported-item {% if season == input_data.Season %}current-selection{% endif %}">
+                                    {{ season }}{% if season == input_data.Season %} (your selection){% endif %}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        
+        <a href="/" class="back-btn">Make New Prediction</a>
+    </div>
+</body>
+</html>

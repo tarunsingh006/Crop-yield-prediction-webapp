@@ -1,0 +1,10 @@
+crop-yield/
+├── app.py
+├── model.py
+├── templates/
+│   ├── index.html
+│   └── result.html
+├── static/
+│   └── style.css
+├── dataset.csv    # Your actual data
+└── requirements.txt

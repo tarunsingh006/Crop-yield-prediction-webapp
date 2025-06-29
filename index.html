@@ -1,0 +1,157 @@
+<head>
+    <title>Crop Yield Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Yield Predictor</h1>
+        <form action="/predict" method="post">
+            <!-- Categorical Inputs with Textbox + Dropdown -->
+            <div class="form-group">
+                <label for="crop">Crop:</label>
+                <input list="crop-options" id="crop" name="crop" required>
+                <datalist id="crop-options">
+                    <option value="Arecanut">
+                    <option value="Arhar/Tur">
+                    <option value="Castor seed">
+                    <option value="Coconut">
+                    <option value="Cotton(lint)">
+                    <option value="Dry chillies">
+                    <option value="Gram">
+                    <option value="Jute">
+                    <option value="Linseed">
+                    <option value="Maize">
+                    <option value="Mesta">
+                    <option value="Niger seed">
+                    <option value="Onion">
+                    <option value="Other Rabi pulses">
+                    <option value="Potato">
+                    <option value="Rapeseed &Mustard">
+                    <option value="Rice">
+                    <option value="Sesamum">
+                    <option value="Small millets">
+                    <option value="Sugarcane">
+                    <option value="Sweet potato">
+                    <option value="Tapioca">
+                    <option value="Tobacco">
+                    <option value="Turmeric">
+                    <option value="Wheat">
+                    <option value="Bajra">
+                    <option value="Black pepper">
+                    <option value="Cardamom">
+                    <option value="Coriander">
+                    <option value="Garlic">
+                    <option value="Ginger">
+                    <option value="Groundnut">
+                    <option value="Horse-gram">
+                    <option value="Jowar">
+                    <option value="Ragi">
+                    <option value="Cashewnut">
+                    <option value="Banana">
+                    <option value="Soyabean">
+                    <option value="Barley">
+                    <option value="Khesari">
+                    <option value="Masoor">
+                    <option value="Moong(Green Gram)">
+                    <option value="Other Kharif pulses">
+                    <option value="Safflower">
+                    <option value="Sannhamp">
+                    <option value="Sunflower">
+                    <option value="Urad">
+                    <option value="Peas & beans (Pulses)">
+                    <option value="other oilseeds">
+                    <option value="Other Cereals">
+                    <option value="Cowpea(Lobia)">
+                    <option value="Oilseeds total">
+                    <option value="Guar seed">
+                    <option value="Other Summer Pulses">
+                    <option value="Moth">
+                </datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="season">Season:</label>
+                <input list="season-options" id="season" name="season" required>
+                <datalist id="season-options">
+                    <option value="Whole Year">
+                    <option value="Kharif">
+                    <option value="Rabi">
+                    <option value="Autumn">
+                    <option value="Summer">
+                    <option value="Winter">
+                </datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State:</label>
+                <input list="state-options" id="state" name="state" required>
+                <datalist id="state-options">
+                    <option value="Assam">
+                    <option value="Karnataka">
+                    <option value="Kerala">
+                    <option value="Meghalaya">
+                    <option value="West Bengal">
+                    <option value="Puducherry">
+                    <option value="Goa">
+                    <option value="Andhra Pradesh">
+                    <option value="Tamil Nadu">
+                    <option value="Odisha">
+                    <option value="Bihar">
+                    <option value="Gujarat">
+                    <option value="Madhya Pradesh">
+                    <option value="Maharashtra">
+                    <option value="Mizoram">
+                    <option value="Punjab">
+                    <option value="Uttar Pradesh">
+                    <option value="Haryana">
+                    <option value="Himachal Pradesh">
+                    <option value="Tripura">
+                    <option value="Nagaland">
+                    <option value="Chhattisgarh">
+                    <option value="Uttarakhand">
+                    <option value="Jharkhand">
+                    <option value="Delhi">
+                    <option value="Manipur">
+                    <option value="Jammu and Kashmir">
+                    <option value="Telangana">
+                    <option value="Arunachal Pradesh">
+                    <option value="Sikkim">
+                </datalist>
+            </div>
+
+            <!-- Numerical Inputs -->
+            <div class="form-group">
+                <label>Crop Year(1997-2030):</label>
+                <input type="number" name="year" min="2000" max="2030" required>
+            </div>
+
+            <div class="form-group">
+                <label>Area (hectares):</label>
+                <input type="number" step="0.01" name="area" required>
+            </div>
+
+            <div class="form-group">
+                <label>Production (tons):</label>
+                <input type="number" step="0.01" name="production" required>
+            </div>
+
+            <div class="form-group">
+                <label>Annual Rainfall (mm):</label>
+                <input type="number" step="0.1" name="rainfall" required>
+            </div>
+
+            <div class="form-group">
+                <label>Fertilizer (kg/ha):</label>
+                <input type="number" step="0.1" name="fertilizer" required>
+            </div>
+
+            <div class="form-group">
+                <label>Pesticide (kg/ha):</label>
+                <input type="number" step="0.1" name="pesticide" required>
+            </div>
+
+            <button type="submit">Predict Yield</button>
+        </form>
+    </div>
+</body>
+</html>
