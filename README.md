@@ -1,5 +1,6 @@
 # Crop-yield-prediction-webapp🚜🌾
 This project focuses on predicting crop yield based on various environmental and agricultural factors using Machine Learning techniques. The goal is to help farmers, agricultural businesses, and policymakers make data-driven decisions to improve productivity and sustainability.
+
 📌 Features
 Crop yield prediction based on input parameters like:
 
